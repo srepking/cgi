@@ -5,7 +5,7 @@ cgitb.enable()
 import os
 import datetime
 
-
+dt = datetime.datetime.today()
 default = "No Value Present"
 
 
@@ -23,10 +23,10 @@ body = """<html>
 </body>
 </html>""".format(
     software=os.environ.get('SERVER_SOFTWARE', default),
-    script='aaaa',
-    month='bbbb',
-    date='cccc',
-    year='dddd',
-    client_ip='eeee'
+    script=os.environ.get('SCRIPT_NAME', default),
+    month=dt.strftime('%b'),
+    date=dt.day,
+    year=dt.year,
+    client_ip=os.environ.get('REMOTE_ADDR', default)
 )
 print(body)
